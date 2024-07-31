@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USER\\source\\repos\\Amantran\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3AE31CC9-ED2C-43DB-8CA6-C0C0FF88E433}|Amantran.csproj|c:\\users\\user\\source\\repos\\amantran\\views\\invitationselection\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3AE31CC9-ED2C-43DB-8CA6-C0C0FF88E433}|Amantran.csproj|solutionrelative:views\\invitationselection\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AE31CC9-ED2C-43DB-8CA6-C0C0FF88E433}|Amantran.csproj|c:\\users\\user\\source\\repos\\amantran\\wwwroot\\css\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{3AE31CC9-ED2C-43DB-8CA6-C0C0FF88E433}|Amantran.csproj|solutionrelative:wwwroot\\css\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AE31CC9-ED2C-43DB-8CA6-C0C0FF88E433}|Amantran.csproj|c:\\users\\user\\source\\repos\\amantran\\models\\invitaionselectionmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AE31CC9-ED2C-43DB-8CA6-C0C0FF88E433}|Amantran.csproj|solutionrelative:models\\invitaionselectionmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AE31CC9-ED2C-43DB-8CA6-C0C0FF88E433}|Amantran.csproj|c:\\users\\user\\source\\repos\\amantran\\views\\shared\\_recipienttable.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3AE31CC9-ED2C-43DB-8CA6-C0C0FF88E433}|Amantran.csproj|solutionrelative:views\\shared\\_recipienttable.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AE31CC9-ED2C-43DB-8CA6-C0C0FF88E433}|Amantran.csproj|c:\\users\\user\\source\\repos\\amantran\\services\\invitaionselection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AE31CC9-ED2C-43DB-8CA6-C0C0FF88E433}|Amantran.csproj|solutionrelative:services\\invitaionselection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AE31CC9-ED2C-43DB-8CA6-C0C0FF88E433}|Amantran.csproj|c:\\users\\user\\source\\repos\\amantran\\controllers\\invitationselectioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AE31CC9-ED2C-43DB-8CA6-C0C0FF88E433}|Amantran.csproj|solutionrelative:controllers\\invitationselectioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AE31CC9-ED2C-43DB-8CA6-C0C0FF88E433}|Amantran.csproj|c:\\users\\user\\source\\repos\\amantran\\interface\\iinvitaionselection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AE31CC9-ED2C-43DB-8CA6-C0C0FF88E433}|Amantran.csproj|solutionrelative:interface\\iinvitaionselection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.css",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\Amantran\\wwwroot\\css\\Index.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\Index.css",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\Amantran\\wwwroot\\css\\Index.css",
+              "RelativeToolTip": "wwwroot\\css\\Index.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC4AAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-07-28T20:22:16.348Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_RecipientTable.cshtml",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\Amantran\\Views\\Shared\\_RecipientTable.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_RecipientTable.cshtml",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\Amantran\\Views\\Shared\\_RecipientTable.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_RecipientTable.cshtml",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABMAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-28T18:09:55.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "InvitaionSelectionModel.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\Amantran\\Models\\InvitaionSelectionModel.cs",
+              "RelativeDocumentMoniker": "Models\\InvitaionSelectionModel.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\Amantran\\Models\\InvitaionSelectionModel.cs",
+              "RelativeToolTip": "Models\\InvitaionSelectionModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-24T20:19:18.501Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\Amantran\\Views\\InvitationSelection\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\InvitationSelection\\Index.cshtml",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\Amantran\\Views\\InvitationSelection\\Index.cshtml",
+              "RelativeToolTip": "Views\\InvitationSelection\\Index.cshtml",
+              "ViewState": "AQIAACYAAAAAAAAAAAAAAP8AAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-28T20:11:34.625Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "InvitaionSelection.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\Amantran\\Services\\InvitaionSelection.cs",
+              "RelativeDocumentMoniker": "Services\\InvitaionSelection.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\Amantran\\Services\\InvitaionSelection.cs",
+              "RelativeToolTip": "Services\\InvitaionSelection.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAowGAAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-24T20:15:41.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IInvitaionSelection.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\Amantran\\Interface\\IInvitaionSelection.cs",
+              "RelativeDocumentMoniker": "Interface\\IInvitaionSelection.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\Amantran\\Interface\\IInvitaionSelection.cs",
+              "RelativeToolTip": "Interface\\IInvitaionSelection.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAxwAwAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-24T20:14:41.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "InvitationSelectionController.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\Amantran\\Controllers\\InvitationSelectionController.cs",
+              "RelativeDocumentMoniker": "Controllers\\InvitationSelectionController.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\Amantran\\Controllers\\InvitationSelectionController.cs",
+              "RelativeToolTip": "Controllers\\InvitationSelectionController.cs",
+              "ViewState": "AQIAAFMAAAAAAAAAAAAswF0AAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-24T20:12:48.078Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

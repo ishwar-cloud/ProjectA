@@ -1,0 +1,263 @@
+﻿@model Amantran.Models.InvitaionSelectionModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Invitation</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Index.css" asp-append-version="true" />
+    
+</head>
+<body>
+    <div class="container-custom">
+        <div class="card p-3 mb-3">
+            <form id="filterForm" class="d-flex flex-wrap">
+                <div class="me-2 mb-2 flex-grow-1">
+                    <select id="StateId" name="StateId" class="form-control">
+                        <option value="">Select a State</option>
+                        @foreach (var item in Model.StateList)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="me-2 mb-2 flex-grow-1">
+                    <select id="DistrictId" name="DistrictId" class="form-control">
+                        <option value="">Select a District</option>
+                    </select>
+                </div>
+                <div class="me-2 mb-2 flex-grow-1">
+                    <select id="SubDistrictId" name="SubDistrictId" class="form-control">
+                        <option value="">Select a Sub-District</option>
+                    </select>
+                </div>
+                <div class="me-2 mb-2 flex-grow-1">
+                    <select id="VillageId" name="VillageId" class="form-control">
+                        <option value="">Select a Village</option>
+                    </select>
+                </div>
+                <div class="me-2 mb-2">
+                    <button type="button" id="filterButton" class="btn btn-primary">Find</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="filter-section mb-3">
+            <h4>Filter Section </h4>
+            <div class="d-flex flex-wrap">
+                <div class="me-2 mb-2 flex-grow-1">
+                    <input type="text" name="FirstName" id="FirstName" placeholder="First Name" class="form-control" />
+                </div>
+                <div class="me-2 mb-2 flex-grow-1">
+                    <input type="text" name="MiddleName" id="MiddleName" placeholder="Middle Name" class="form-control" />
+                </div>
+                <div class="me-2 mb-2 flex-grow-1">
+                    <input type="text" name="LastName" id="LastName" placeholder="Last Name" class="form-control" />
+                </div>
+                <div class="me-2 mb-2 flex-grow-1">
+                    <input type="text" name="WifeName" id="WifeName" placeholder="Wife Name" class="form-control" />
+                </div>
+                <div class="me-2 mb-2 flex-grow-1">
+                    <input type="text" name="MotherName" id="MotherName" placeholder="Mother Name" class="form-control" />
+                </div>
+                <div class="me-2 mb-2">
+                    <button type="button" id="submitFilter" class="btn btn-primary">Filter</button>
+                </div>
+            </div>
+        </div>
+
+       @*  <div id="recipientTableContainer" class="container-custom">
+            <form id="recipientsForm" method="post" action="@Url.Action("SubmitRecipients", "InvitationSelection")">
+                <table class="table" id="recipientsTable">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Middle Name</th>
+                            <th>Age</th>
+                            <th>Status</th>
+                            <th>Wife Name</th>
+                            <th>Mother Name</th>
+                            <th>Only Gents</th>
+                            <th>Whole Family</th>
+                            <th class="optional-column" data-column="isWedding">Wedding</th>
+                            <th class="optional-column" data-column="isGaval">Gaval</th>
+                            <th class="optional-column" data-column="isHalad">Halad</th>
+                            <th class="optional-column" data-column="isOvalane">Ovalane</th>
+                            <th class="optional-column" data-column="isReception">Reception</th>
+                            <th class="optional-column" data-column="isMehandi">Mehandi</th>
+                            <th class="optional-column" data-column="isSangit">Sangit</th>
+                            <th>Invited By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @Html.Partial("_RecipientTable", Model)
+                    </tbody>
+                </table>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </form>
+        </div>
+    </div> *@
+        <div id="recipientTableContainer" class="table-container">
+            <form id="recipientsForm" method="post" action="@Url.Action("SubmitRecipients", "InvitationSelection")">
+                <div class="table-wrapper">
+                    <table class="table" id="recipientsTable">
+                        <thead>
+                            <tr>
+                                
+                                <th>First Name</th>                             
+                                <th>Middle Name</th>
+                                <th>Last Name</th>
+                                <th>Age</th>
+                                <th>Status</th>
+                                <th>Wife Name</th>
+                                <th>Mother Name</th>
+                                <th>Only Gents</th>
+                                <th>Whole Family</th>
+                                <th class="optional-column" data-column="isWedding">Wedding</th>
+                                <th class="optional-column" data-column="isGaval">Gaval</th>
+                                <th class="optional-column" data-column="isHalad">Halad</th>
+                                <th class="optional-column" data-column="isOvalane">Ovalane</th>
+                                <th class="optional-column" data-column="isReception">Reception</th>
+                                <th class="optional-column" data-column="isMehandi">Mehandi</th>
+                                <th class="optional-column" data-column="isSangit">Sangit</th>
+                                <th>Invited By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @Html.Partial("_RecipientTable", Model)
+                        </tbody>
+                    </table>
+                </div>
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </form>
+        </div>
+
+
+    @section Scripts {
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#StateId').change(function () {
+                    var stateId = $(this).val();
+                    $.ajax({
+                        url: '@Url.Action("GetDistricts", "InvitationSelection")',
+                        data: { stateId: stateId },
+                        success: function (result) {
+                            var districtSelect = $('#DistrictId');
+                            districtSelect.empty().append('<option value="">Select a District</option>');
+                            $.each(result, function (index, item) {
+                                districtSelect.append('<option value="' + item.value + '">' + item.text + '</option>');
+                            });
+                            $('#SubDistrictId').empty().append('<option value="">Select a Sub-District</option>');
+                            $('#VillageId').empty().append('<option value="">Select a Village</option>');
+                        }
+                    });
+                });
+
+                $('#DistrictId').change(function () {
+                    var districtId = $(this).val();
+                    $.ajax({
+                        url: '@Url.Action("GetSubDistricts", "InvitationSelection")',
+                        data: { districtId: districtId },
+                        success: function (result) {
+                            var subDistrictSelect = $('#SubDistrictId');
+                            subDistrictSelect.empty().append('<option value="">Select a Sub-District</option>');
+                            $.each(result, function (index, item) {
+                                subDistrictSelect.append('<option value="' + item.value + '">' + item.text + '</option>');
+                            });
+                            $('#VillageId').empty().append('<option value="">Select a Village</option>');
+                        }
+                    });
+                });
+
+                $('#SubDistrictId').change(function () {
+                    var subDistrictId = $(this).val();
+                    $.ajax({
+                        url: '@Url.Action("GetVillages", "InvitationSelection")',
+                        data: { subDistrictId: subDistrictId },
+                        success: function (result) {
+                            var villageSelect = $('#VillageId');
+                            villageSelect.empty().append('<option value="">Select a Village</option>');
+                            $.each(result, function (index, item) {
+                                villageSelect.append('<option value="' + item.value + '">' + item.text + '</option>');
+                            });
+                        }
+                    });
+                });
+
+                $('#filterButton').click(function () {
+                    var villageId = $('#VillageId').val();
+                    if (villageId) {
+                        $.ajax({
+                            url: '@Url.Action("GetRecipients", "InvitationSelection")',
+                            data: { villageId: parseInt(villageId) },
+                            success: function (result) {
+                                $('#recipientsTable tbody').html(result);
+                                updateColumns();
+                            }
+                        });
+                    } else {
+                        alert("Please select a village.");
+                    }
+                });
+
+                $('#submitFilter').click(function () {
+                    filterTable();
+                });
+
+                function filterTable() {
+                    var firstName = $('#FirstName').val().toLowerCase();
+                    var middleName = $('#MiddleName').val().toLowerCase();
+                    var lastName = $('#LastName').val().toLowerCase();
+                    var wifeName = $('#WifeName').val().toLowerCase();
+                        var motherName = $('#MotherName').val().toLowerCase();
+
+                    $('#recipientsTable tbody tr').each(function () {
+                        var row = $(this);
+                        var matchFirstName = row.children('td').eq(0).text().toLowerCase().indexOf(firstName) > -1;
+                        var matchMiddleName = row.children('td').eq(1).text().toLowerCase().indexOf(middleName) > -1;
+                        var matchLastName = row.children('td').eq(2).text().toLowerCase().indexOf(lastName) > -1;
+                        var matchWifeName = row.children('td').eq(5).text().toLowerCase().indexOf(wifeName) > -1;
+                        var matchMotherName = row.children('td').eq(6).text().toLowerCase().indexOf(motherName) > -1;
+
+
+                        if (firstName && !matchFirstName) {
+                            row.hide();
+                        } else if (middleName && !matchMiddleName) {
+                            row.hide();
+                        } else if (lastName && !matchLastName) {
+                            row.hide();
+                        } else if (wifeName && !matchWifeName) {
+                                row.hide();            
+                        }
+                            else if (motherName && !matchMotherName) {
+                                row.hide();
+                        }
+                        else {
+                            row.show();
+                        }
+                    });
+                }
+
+                function updateColumns() {
+                    $.getJSON('@Url.Action("GetFunctionProperties", "InvitationSelection")', function (data) {
+                        $('.optional-column').each(function () {
+                            var column = $(this).data('column');
+                            if (data[column] === false) {
+                                $(this).hide();
+                            } else {
+                                $(this).show();
+                            }
+                        });
+                    });
+                }
+
+                updateColumns();
+            });
+        </script>
+    }
+</body>
+</html>
