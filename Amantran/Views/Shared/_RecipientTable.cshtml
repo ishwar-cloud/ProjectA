@@ -1,0 +1,87 @@
+﻿@model InvitaionSelectionModel
+
+@{
+    Layout = null;
+}
+
+@if (Model != null && Model.Recipients!= null )
+{
+      
+               
+               
+            
+                       
+    foreach (var recipient in Model.Recipients)
+    {
+        <tr>
+           
+            <td>@recipient.FirstName</td>
+            <td>@recipient.MiddleName</td>
+            <td>@recipient.LastName</td>
+            <td>@recipient.Age</td>
+            <td>@recipient.RelationshipStatus</td>
+            <td>@recipient.Spouse?.FirstName</td>
+            <td>@recipient.Mother?.FirstName</td>
+            <td>
+                <input type="checkbox" name="isOnlyGents_@recipient.RecipientId" value="true" />
+            </td>
+            <td>
+                <input type="checkbox" name="isWholeFamily_@recipient.RecipientId" value="true" />
+            </td>
+            <td class="optional-column" data-column="isWedding">
+                <input type="checkbox" name="isWedding_@recipient.RecipientId" value="true" />
+            </td>
+            <td class="optional-column" data-column="isGaval">
+                <input type="checkbox" name="isGaval_@recipient.RecipientId" value="true" />
+            </td>
+            <td class="optional-column" data-column="isHalad">
+                <input type="checkbox" name="isHalad_@recipient.RecipientId" value="true" />
+            </td>
+            <td class="optional-column" data-column="isOvalane">
+                <input type="checkbox" name="isOvalane_@recipient.RecipientId" value="true" />
+            </td>
+            <td class="optional-column" data-column="isReception">
+                <input type="checkbox" name="isReception_@recipient.RecipientId" value="true" />
+            </td>
+            <td class="optional-column" data-column="isMehandi">
+                <input type="checkbox" name="isMehandi_@recipient.RecipientId" value="true" />
+            </td>
+            <td class="optional-column" data-column="isSangit">
+                <input type="checkbox" name="isSangit_@recipient.RecipientId" value="true" />
+            </td>
+            <td>
+                <select name="invitedBy_@recipient.RecipientId" class="form-control">
+                    <option value="">Select</option>
+                    @foreach (var item in Model.InvitedByList)
+                    {
+                        <option value="@item.InvitedById">@item.InvitedByName</option>
+                      
+                    }
+                </select>
+
+               @*  <select name="invitedBy_@recipient.RecipientId" class="form-control">
+                    <option value="">Select</option>
+                    @if (Model.DefaultInvitedBy != null)
+                    {
+                        <option value="@Model.DefaultInvitedBy.InvitedById" selected>@Model.DefaultInvitedBy.InvitedByName</option>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.InvitedByList)
+                        {
+                            <option value="@item.InvitedById">@item.InvitedByName</option>
+                        }
+                    }
+                </select> *@
+            </td>
+          
+        </tr>
+
+    }
+}
+else
+{
+    <tr>
+        <td colspan="18">No recipients found.</td>
+    </tr>
+}
