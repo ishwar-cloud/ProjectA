@@ -4,6 +4,7 @@
     Layout = null;
 }
 
+
 @if (Model != null && Model.Recipients!= null )
 {
       
@@ -13,6 +14,21 @@
                        
     foreach (var recipient in Model.Recipients)
     {
+        
+        var existingInvitation = Model.ExistingInvitations.FirstOrDefault(i => i.RecipientId == recipient.RecipientId);
+       
+        
+        int? invId = existingInvitation?.InvitationId;
+        var video = invId != null
+            ? Model.ExistVideoList.FirstOrDefault(m => m.InvitationId == invId.Value)
+            : null;
+
+        var card = invId != null
+            ? Model.ExistcardsList.FirstOrDefault(m => m.InvitationId == invId.Value)
+            : null;
+           
+        
+        @* var existingInvitation = Model.ExistingInvitations?.FirstOrDefault(i => i.RecipientId == recipient.RecipientId); *@
         <tr>
            
             <td>@recipient.FirstName</td>
@@ -23,61 +39,111 @@
             <td>@recipient.Spouse?.FirstName</td>
             <td>@recipient.Mother?.FirstName</td>
             <td>
-                <input type="checkbox" name="isOnlyGents_@recipient.RecipientId" value="true" />
+                <input type="checkbox" name="isOnlyGents_@recipient.RecipientId" value="true" @(existingInvitation?.Individual == true ? "checked" : "") />
             </td>
             <td>
-                <input type="checkbox" name="isWholeFamily_@recipient.RecipientId" value="true" />
+                <input type="checkbox" name="isWholeFamily_@recipient.RecipientId" value="true" @(existingInvitation?.WholeFamily == true ? "checked" : "") />
             </td>
             <td class="optional-column" data-column="isWedding">
-                <input type="checkbox" name="isWedding_@recipient.RecipientId" value="true" />
+                <input type="checkbox" name="isWedding_@recipient.RecipientId" value="true" @(existingInvitation?.Wedding == true ? "checked" : "") />
             </td>
             <td class="optional-column" data-column="isGaval">
-                <input type="checkbox" name="isGaval_@recipient.RecipientId" value="true" />
+                <input type="checkbox" name="isGaval_@recipient.RecipientId" value="true" @(existingInvitation?.Gaval == true ? "checked" : "") />
             </td>
             <td class="optional-column" data-column="isHalad">
-                <input type="checkbox" name="isHalad_@recipient.RecipientId" value="true" />
+                <input type="checkbox" name="isHalad_@recipient.RecipientId" value="true" @(existingInvitation?.Halad == true ? "checked" : "") />
             </td>
             <td class="optional-column" data-column="isOvalane">
-                <input type="checkbox" name="isOvalane_@recipient.RecipientId" value="true" />
+                <input type="checkbox" name="isOvalane_@recipient.RecipientId" value="true" @(existingInvitation?.Ovalane == true ? "checked" : "") />
             </td>
             <td class="optional-column" data-column="isReception">
-                <input type="checkbox" name="isReception_@recipient.RecipientId" value="true" />
+                <input type="checkbox" name="isReception_@recipient.RecipientId" value="true" @(existingInvitation?.Reception == true ? "checked" : "") />
             </td>
             <td class="optional-column" data-column="isMehandi">
-                <input type="checkbox" name="isMehandi_@recipient.RecipientId" value="true" />
+                <input type="checkbox" name="isMehandi_@recipient.RecipientId" value="true" @(existingInvitation?.Mehendi == true ? "checked" : "") />
             </td>
             <td class="optional-column" data-column="isSangit">
-                <input type="checkbox" name="isSangit_@recipient.RecipientId" value="true" />
+                <input type="checkbox" name="isSangit_@recipient.RecipientId" value="true" @(existingInvitation?.Sangeet == true ? "checked" : "") />
             </td>
             <td>
-                <select name="invitedBy_@recipient.RecipientId" class="form-control">
+
+
+                <select name="invitedBy_@recipient.RecipientId" class="form-control custom-dropdown">
                     <option value="">Select</option>
+              
                     @foreach (var item in Model.InvitedByList)
                     {
-                        <option value="@item.InvitedById">@item.InvitedByName</option>
                       
-                    }
-                </select>
+                    
 
-               @*  <select name="invitedBy_@recipient.RecipientId" class="form-control">
-                    <option value="">Select</option>
-                    @if (Model.DefaultInvitedBy != null)
+                    if (existingInvitation?.InvitedById == item.InvitedById)
                     {
-                        <option value="@Model.DefaultInvitedBy.InvitedById" selected>@Model.DefaultInvitedBy.InvitedByName</option>
+                    <option value="@item.InvitedById" selected>@item.InvitedByName</option>
+                    }
+                    else if (existingInvitation == null && Model.DefaultInvitedBy != null && item.InvitedById == Model.DefaultInvitedBy.InvitedById)
+                    {
+                    <option value="@item.InvitedById" selected>@item.InvitedByName</option>
                     }
                     else
                     {
-                        @foreach (var item in Model.InvitedByList)
+                    <option value="@item.InvitedById">@item.InvitedByName</option>
+                    }
+                    }
+                </select>
+            </td>
+
+            <td>
+
+
+                <select name="sampleCard_@recipient.RecipientId" class="form-control custom-dropdown">
+                    <option value="">Select</option>
+
+                    @foreach (var item in Model.SampleCards)
+                    {
+
+                        if (card?.TemplateStructureId == item.TemplateStructureId)
                         {
-                            <option value="@item.InvitedById">@item.InvitedByName</option>
+                            <option value="@item.TemplateStructureId" selected>@item.Name</option>
+
+                        }
+                        else
+                        {
+                            <option value="@item.TemplateStructureId">@item.Name</option>
+
+                        }
+
+                       
+                    }
+                </select>
+            </td>
+            <td>
+
+
+                <select name="sampleVideo_@recipient.RecipientId" class="form-control custom-dropdown">
+                    <option value="">Select</option>
+
+                    @foreach (var item in Model.SampleVideo)
+                    {
+                        if (video?.TemplateStructureId == item.TemplateStructureId)
+                        {
+                            <option value="@item.TemplateStructureId" selected>@item.Name</option>
+
+                        }
+                        else
+                        {
+                            <option value="@item.TemplateStructureId">@item.Name</option>
+
                         }
                     }
-                </select> *@
+                </select>
             </td>
+
           
         </tr>
 
     }
+   
+    
 }
 else
 {
@@ -85,3 +151,14 @@ else
         <td colspan="18">No recipients found.</td>
     </tr>
 }
+
+       <style>
+    .custom-dropdown {
+        height: 30px;
+        text-align: center;
+        font-size: 12px; /* Adjust the font size as needed */
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+    }
+       </style>      

@@ -1,59 +1,53 @@
-﻿using Amantran.Interface;
+﻿using Amantran.BuscinessServices.Implimentation;
+using Amantran.BuscinessServices.Interface;
 using Amantran.Models;
+using Infrastructure.DataContext;
+using Infrastructure.Interface;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace Amantran.Controllers
 {
     public class InvitationSelectionController : Controller
     {
-        private readonly IInvitaionSelection _invitaionSelection;
-
-        public InvitationSelectionController(IInvitaionSelection invitaionSelection)
+        private readonly IInvitationMaster _invitationMaster;
+        private readonly IResponseMessageGenerator _message;
+        public InvitationSelectionController(IInvitationMaster invitationMaster, IResponseMessageGenerator message)
         {
-            _invitaionSelection = invitaionSelection;
+            _invitationMaster = invitationMaster;
+            _message = message;
         }
 
         public IActionResult Index()
         {
-            var viewModel = _invitaionSelection.GetState();
-            
-           
-
+            var viewModel = _invitationMaster.GetState();
             return View(viewModel);
-
         }
 
         [HttpGet]
         public JsonResult GetDistricts(int stateId)
         {
-            var districts = _invitaionSelection.GetDistricts(stateId);
+            var districts = _invitationMaster.GetDistricts(stateId);
             return Json(districts);
         }
 
         [HttpGet]
         public JsonResult GetSubDistricts(int districtId)
         {
-            var subDistricts = _invitaionSelection.GetSubDistricts(districtId);
+            var subDistricts = _invitationMaster.GetSubDistricts(districtId);
             return Json(subDistricts);
         }
 
         [HttpGet]
         public JsonResult GetVillages(int subDistrictId)
         {
-            var villages = _invitaionSelection.GetVillages(subDistrictId);
+            var villages = _invitationMaster.GetVillages(subDistrictId);
             return Json(villages);
         }
-
 
         [HttpGet]
         public IActionResult GetRecipients(int villageId)
         {
-            var recipients = _invitaionSelection.GetRecipients(villageId);
-
-             
-            // return RedirectToAction("Index", recipients);
-
+            var recipients = _invitationMaster.GetRecipients(villageId);
             return PartialView("_RecipientTable", recipients);
 
         }
@@ -61,66 +55,122 @@ namespace Amantran.Controllers
         [HttpGet]
         public JsonResult GetFunctionProperties()
         {
-            var functionModel = _invitaionSelection.GetFunction();
+            var functionModel = _invitationMaster.GetFunction();
             return Json(functionModel);
         }
 
+
+
+        
         [HttpPost]
-        public IActionResult SubmitRecipients(IFormCollection form)
+        public JsonResult SubmitRecipients(IFormCollection form)
         {
-            var invitations = new List<Invitation>();
             var processedRecipients = new HashSet<string>();
+            bool anyInserts = false;
+            bool anyUpdates = false;
+
+            int functionId = 1;
 
             foreach (var key in form.Keys)
             {
+                var recipientId = key.Split('_')[1];
+                int recipientIdInt = int.Parse(recipientId);
+
+                // Check if the key corresponds to a recipient ID
                 if (key.StartsWith("isOnlyGents_") || key.StartsWith("isWholeFamily_"))
                 {
-                    var recipientId = key.Split('_')[1];
-
-
-                    // Skip if this recipient has already been processed
+                    
                     if (processedRecipients.Contains(recipientId))
                         continue;
-
-                    var isOnlyGents = form[$"isOnlyGents_{recipientId}"] == "true";
-                    var isWholeFamily = form[$"isWholeFamily_{recipientId}"] == "true";
-                    var isWedding = form[$"isWedding_{recipientId}"] == "true";
-                    var isGaval = form[$"isGaval_{recipientId}"] == "true";
-                    var isHalad = form[$"isHalad_{recipientId}"] == "true";
-                    var isOvalane = form[$"isOvalane_{recipientId}"] == "true";
-                    var isReception = form[$"isReception_{recipientId}"] == "true";
-                    var isMehandi = form[$"isMehandi_{recipientId}"] == "true";
-                    var isSangit = form[$"isSangit_{recipientId}"] == "true";
-                    var invitedById = int.Parse(form[$"invitedBy_{recipientId}"]);
-
-                    // Create and add a new Invitation object to the list
-                    invitations.Add(new Invitation
+                              
+                    var recipientData = new RecipientInvitationData
                     {
-                        RecipientId = int.Parse(recipientId),
-                        Individual = isOnlyGents,
-                        WholeFamily = isWholeFamily,
-                        Wedding = isWedding,
-                        Gaval = isGaval,
-                        Halad = isHalad,
-                        Ovalane = isOvalane,
-                        Reception = isReception,
-                        InvitedById = invitedById,
-                        Mehendi= isMehandi,
-                        Sangeet=isSangit,
+                        RecipientId = recipientIdInt,
+                        IsOnlyGents = form[$"isOnlyGents_{recipientId}"] == "true",
+                        IsWholeFamily = form[$"isWholeFamily_{recipientId}"] == "true",
+                        IsWedding = form[$"isWedding_{recipientId}"] == "true",
+                        IsGaval = form[$"isGaval_{recipientId}"] == "true",
+                        IsHalad = form[$"isHalad_{recipientId}"] == "true",
+                        IsOvalane = form[$"isOvalane_{recipientId}"] == "true",
+                        IsReception = form[$"isReception_{recipientId}"] == "true",
+                        IsMehandi = form[$"isMehandi_{recipientId}"] == "true",
+                        IsSangit = form[$"isSangit_{recipientId}"] == "true",
+                        InvitedById = int.Parse(form[$"invitedBy_{recipientId}"]),
+                       
+                    };
+
+                   
+
+                    var invitationId = _invitationMaster.CreateOrUpdateInvitation(recipientData, 1);
+                    anyUpdates = true;
+
+
+                    // Create WhatsApp message for the card
+                    if (form.ContainsKey($"sampleCard_{recipientId}"))
+                    {
+                        var cardIdString = form[$"sampleCard_{recipientId}"];
+
+                        _invitationMaster.CreateOrUpdateCard(cardIdString, invitationId, recipientIdInt,"Image");
                         
-                    });
+                    }
+
+                    // Create WhatsApp message for the video
+                    if (form.ContainsKey($"sampleVideo_{recipientId}"))
+                    {
+                        var videoIdString = form[$"sampleVideo_{recipientId}"];
+                        _invitationMaster.CreateOrUpdateCard(videoIdString, invitationId, recipientIdInt, "Video");
+                    }
 
                     processedRecipients.Add(recipientId); // Mark this recipient as processed
                 }
+                else if (!key.StartsWith("isOnlyGents_") && !key.StartsWith("isWholeFamily_"))
+                {
+                    var recipientData = new RecipientInvitationData
+                    {
+                        IsOnlyGents = form[$"isOnlyGents_{recipientId}"] == "true",
+                        IsWholeFamily = form[$"isWholeFamily_{recipientId}"] == "true",
+                    };
+
+                    var existingInvitation = _invitationMaster.GetInvitation(recipientIdInt, functionId);
+
+                    
+
+                    if (existingInvitation != null)
+                    {
+                        if (!recipientData.IsOnlyGents && !recipientData.IsWholeFamily)
+                        {
+
+                            var InvId = existingInvitation.InvitationId;
+                            _invitationMaster.RemoveInvitation(InvId);
+
+                            
+                                                  
+                          
+                            anyUpdates = true;
+                        }
+                        else
+                        {
+                            // Update the existing invitation only if there are changes
+                            existingInvitation.Individual = recipientData.IsOnlyGents;
+                            existingInvitation.WholeFamily = recipientData.IsWholeFamily;
+
+                            // Update the invitation in the database
+                            _invitationMaster.UpdateEntity(existingInvitation);
+                            anyUpdates = true;
+                        }
+                    }
+                }
             }
 
-            // Use the service to add invitations
-            _invitaionSelection.AddInvitations(invitations);
+            _message.SetInserts(anyInserts);
+            _message.SetUpdates(anyUpdates);
 
-            return RedirectToAction("Index");
+            _message.SetCustomMessage("Please review the changes.");
+
+            var responseMessage = _message.GenerateResponseMessage();
+
+            return Json(new { success = true, message = responseMessage });
         }
-
-
 
     }
 }

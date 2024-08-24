@@ -17,55 +17,75 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Amantran
 build_property.RootNamespace = Amantran
-build_property.ProjectDir = C:\Users\USER\source\repos\Amantran\
+build_property.ProjectDir = C:\Users\USER\source\repos\Project A\Amantran\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\USER\source\repos\Amantran
+build_property.MSBuildProjectDirectory = C:\Users\USER\source\repos\Project A\Amantran
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/USER/source/repos/Amantran/Views/Home/Index.cshtml]
+[C:/Users/USER/source/repos/Project A/Amantran/Views/DynamicForm/CreateForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRHluYW1pY0Zvcm1cQ3JlYXRlRm9ybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/source/repos/Project A/Amantran/Views/DynamicForm/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRHluYW1pY0Zvcm1cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/source/repos/Project A/Amantran/Views/FieldSequence/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmllbGRTZXF1ZW5jZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/source/repos/Project A/Amantran/Views/FieldSequence/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmllbGRTZXF1ZW5jZVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/source/repos/Project A/Amantran/Views/FieldSequence/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmllbGRTZXF1ZW5jZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/source/repos/Project A/Amantran/Views/FieldSequence/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmllbGRTZXF1ZW5jZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/USER/source/repos/Project A/Amantran/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/Amantran/Views/Home/Privacy.cshtml]
+[C:/Users/USER/source/repos/Project A/Amantran/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/Amantran/Views/InvitationSelection/Index.cshtml]
+[C:/Users/USER/source/repos/Project A/Amantran/Views/InvitationSelection/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52aXRhdGlvblNlbGVjdGlvblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/Amantran/Views/InvitedBy/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52aXRlZEJ5XENyZWF0ZS5jc2h0bWw=
+[C:/Users/USER/source/repos/Project A/Amantran/Views/Message/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVzc2FnZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/Amantran/Views/RecipientForm/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBpZW50Rm9ybVxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/USER/source/repos/Amantran/Views/Shared/Error.cshtml]
+[C:/Users/USER/source/repos/Project A/Amantran/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/Amantran/Views/Shared/_RecipientTable.cshtml]
+[C:/Users/USER/source/repos/Project A/Amantran/Views/Shared/_RecipientTable.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9SZWNpcGllbnRUYWJsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/Amantran/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/USER/source/repos/Project A/Amantran/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/Amantran/Views/_ViewImports.cshtml]
+[C:/Users/USER/source/repos/Project A/Amantran/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/Amantran/Views/_ViewStart.cshtml]
+[C:/Users/USER/source/repos/Project A/Amantran/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/source/repos/Amantran/Views/Shared/_Layout.cshtml]
+[C:/Users/USER/source/repos/Project A/Amantran/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-tki8prxrjt

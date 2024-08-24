@@ -1,0 +1,32 @@
+﻿@model List<Infrastructure.DataContext.FieldSequence>
+
+<form asp-action="SubmitForm" method="post">
+    @foreach (var field in Model.OrderBy(f => f.SectionSequence).ThenBy(f => f.Sequence))
+    {
+        <div class="form-group">
+            <label for="@field.ColumnName">@field.ColumnLabel</label>
+            @if (field.Datatype == "Text")
+            {
+                <input type="text" class="form-control" id="@field.ColumnName" name="@field.ColumnName" @(field.Required.HasValue && field.Required.Value ? "required" : "") />
+            }
+            else if (field.Datatype == "Dropdown")
+            {
+                <select class="form-control" id="@field.ColumnName" name="@field.ColumnName">
+                    @foreach (var option in field.Value.Split(','))
+                    {
+                        <option value="@option">@option</option>
+                    }
+                </select>
+            }
+            else if (field.Datatype == "Lookup")
+            {
+                <!-- Example placeholder for lookup fields -->
+                <select class="form-control" id="@field.ColumnName" name="@field.ColumnName">
+                    <option value="">Select</option>
+                    <!-- Implement dynamic lookup options based on field.LookupFilterData -->
+                </select>
+            }
+        </div>
+    }
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

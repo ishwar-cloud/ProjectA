@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Infrastructure.DataContext;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Amantran.Models
 {
     public class InvitaionSelectionModel
     {
-        
+
         public List<SelectListItem> StateList { get; set; }
         public List<SelectListItem> DistrictList { get; set; }
         public List<SelectListItem> SubDistrictList { get; set; }
@@ -25,6 +26,10 @@ namespace Amantran.Models
         public bool IsSangit { get; set; }
 
         public InvitedBy DefaultInvitedBy { get; set; }
-
+        public List<Invitation> ExistingInvitations { get; set; }
+        public List<WhatsappMessage> ExistVideoList{  get; set; }
+        public List<WhatsappMessage> ExistcardsList { get; set; }
+        public List<WhatsappTemplateStructure> SampleCards { get; set; }
+        public List<WhatsappTemplateStructure> SampleVideo { get; set; }
     }
 }

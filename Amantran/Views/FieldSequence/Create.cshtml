@@ -1,0 +1,109 @@
+﻿@model Infrastructure.DataContext.FieldSequence
+
+@{
+    ViewData["Title"] = "Create Field Sequence";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h4>Field Sequence</h4>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label asp-for="TableName" class="control-label"></label>
+                        <input asp-for="TableName" class="form-control" />
+                        <span asp-validation-for="TableName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label asp-for="ColumnName" class="control-label"></label>
+                        <input asp-for="ColumnName" class="form-control" />
+                        <span asp-validation-for="ColumnName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label asp-for="Sequence" class="control-label"></label>
+                        <input asp-for="Sequence" class="form-control" />
+                        <span asp-validation-for="Sequence" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label asp-for="SectionName" class="control-label"></label>
+                        <input asp-for="SectionName" class="form-control" />
+                        <span asp-validation-for="SectionName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label asp-for="SectionSequence" class="control-label"></label>
+                        <input asp-for="SectionSequence" class="form-control" />
+                        <span asp-validation-for="SectionSequence" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label asp-for="ColumnLabel" class="control-label"></label>
+                        <input asp-for="ColumnLabel" class="form-control" />
+                        <span asp-validation-for="ColumnLabel" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label asp-for="Datatype" class="control-label"></label>
+                        <select asp-for="Datatype" class="form-control">
+                            <option value="">Select Data Type</option>
+                            <option value="Checkbox">Checkbox</option>
+                            <option value="Currency">Currency</option>
+                            <option value="Date">Date</option>
+                            <option value="Date/Time">Date/Time</option>
+                            <option value="Dropdown">Dropdown</option>
+                            <option value="Email">Email</option>
+                            <option value="Lookup">Lookup</option>
+                            <option value="Number">Number</option>
+                            <option value="Text">Text</option>
+                            <option value="TextArea">TextArea</option>
+                            <option value="Time">Time</option>
+                            <option value="URL">URL</option>
+                        </select>
+                        <span asp-validation-for="Datatype" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label asp-for="Value" class="control-label"></label>
+                        <input asp-for="Value" class="form-control" />
+                        <span asp-validation-for="Value" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label asp-for="LookupFieldUi" class="control-label"></label>
+                        <input asp-for="LookupFieldUi" class="form-control" />
+                        <span asp-validation-for="LookupFieldUi" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        @* <label asp-for="Required" class="control-label"></label>
+                        <input name="Required" value=true Type="checkbox" class="form-check-input" /> *@
+
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label asp-for="LookupFilterSource" class="control-label"></label>
+                        <input asp-for="LookupFilterSource" class="form-control" />
+                        <span asp-validation-for="LookupFilterSource" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label asp-for="LookupFilterData" class="control-label"></label>
+                        <input asp-for="LookupFilterData" class="form-control" />
+                        <span asp-validation-for="LookupFilterData" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-12 text-center form-group">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

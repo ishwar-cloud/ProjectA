@@ -1,6 +1,8 @@
-using Amantran.Interface;
-using Amantran.Models;
-using Amantran.Services;
+using Amantran.BuscinessServices.Implimentation;
+using Amantran.BuscinessServices.Interface;
+using Infrastructure.DataContext;
+using Infrastructure.Interface;
+using Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace Amantran
@@ -11,16 +13,23 @@ namespace Amantran
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
             var provider = builder.Services.BuildServiceProvider();
             var config = provider.GetService<IConfiguration>();
-           
+
             builder.Services.AddDbContext<AmantranContext>(item => item.UseSqlServer(config.GetConnectionString("connString")));
 
-            // Register the InvitationService
+            builder.Services.AddScoped<IInvitationMaster, InvitationMaster>();
             builder.Services.AddScoped<IInvitaionSelection, InvitaionSelection>();
+            builder.Services.AddScoped<IResponseMessageGenerator, ResponseMessageGenerator>();
+            builder.Services.AddHttpClient<IFacebookApiService, FacebookApiService>();
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddHttpClient();
+
 
             var app = builder.Build();
 

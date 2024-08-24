@@ -1,0 +1,40 @@
+﻿@model DynamicFormViewModel
+
+<form asp-action="SubmitForm" method="post">
+    @foreach (var field in Model.FieldMetadata.OrderBy(f => f.SectionSequence).ThenBy(f => f.Sequence))
+    {
+        <div class="form-group">
+            <label for="@field.ColumnName">@field.ColumnLabel</label>
+            @if (field.Datatype == "Text")
+            {
+                <input type="text" class="form-control" id="@field.ColumnName" name="@field.ColumnName" @(field.Required.HasValue && field.Required.Value ? "required" : "") />
+            }
+            else if (field.Datatype == "Dropdown")
+            {
+                <select class="form-control" id="@field.ColumnName" name="@field.ColumnName">
+                    @if (!string.IsNullOrEmpty(field.Value))
+                    {
+                        foreach (var option in field.Value.Split(','))
+                        {
+                            <option value="@option">@option</option>
+                        }
+                    }
+                </select>
+            }
+            else if (field.Datatype == "Lookup")
+            {
+                <select class="form-control" id="@field.ColumnName" name="@field.ColumnName">
+                    <option value="">Select</option>
+                    @if (!string.IsNullOrEmpty(field.LookupFilterData))
+                    {
+                        foreach (var item in field.LookupFilterData.Split(','))
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    }
+                </select>
+            }
+        </div>
+    }
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

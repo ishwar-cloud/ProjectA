@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Infrastructure.DataContext.FieldSequence>
+
+@{
+    ViewData["Title"] = "Field Sequences";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+
+<!-- Custom Filters -->
+<div class="mb-3">
+    <label for="tableNameFilter">Filter by Table Name:</label>
+    <input type="text" id="tableNameFilter" class="form-control" placeholder="Enter table name">
+</div>
+
+<table id="FieldSequenceTable" class="display nowrap" style="width:100%">
+    <thead>
+        <tr>
+            <th>TableName</th>
+            <th>ColumnName</th>
+            <th>Sequence</th>
+            <th>SectionName</th>
+            <th>SectionSequence</th>
+            <th>ColumnLabel</th>
+            <th>Datatype</th>
+            <th>Value</th>
+            <th>LookupFieldUi</th>
+            <th>Required</th>
+            <th>LookupFilterSource</th>
+            <th>LookupFilterData</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TableName</td>
+                <td>@item.ColumnName</td>
+                <td>@item.Sequence</td>
+                <td>@item.SectionName</td>
+                <td>@item.SectionSequence</td>
+                <td>@item.ColumnLabel</td>
+                <td>@item.Datatype</td>
+                <td>@item.Value</td>
+                <td>@item.LookupFieldUi</td>
+                <td><input type="checkbox" disabled="disabled" @(item.Required == true ? "checked" : "") /></td> <!-- Checkbox for Required -->
+                <td>@item.LookupFilterSource</td>
+                <td>@item.LookupFilterData</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.FieldSequenceId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.FieldSequenceId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+    <!-- DataTables Initialization Script -->
+    <script>
+        $(document).ready(function () {
+            var table = $('#FieldSequenceTable').DataTable({
+                paging: true, // Enable pagination
+                searching: true, // Enable default searching
+                ordering: true, // Enable sorting
+                info: true, // Show information about the table
+                pageLength: 20, // Number of rows per page
+                lengthMenu: [10, 20, 50, 100], // Page length options
+                scrollX: true, // Enable horizontal scrolling
+                language: {
+                    paginate: {
+                        previous: 'Previous',
+                        next: 'Next'
+                    }
+                }
+            });
+
+            // Custom filter
+            $('#tableNameFilter').on('keyup', function () {
+                table.column(0).search(this.value).draw(); // Filter by TableName (assuming it's in the first column)
+            });
+        });
+    </script>
+}

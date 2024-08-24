@@ -8,7 +8,7 @@
     <title>@ViewData["Title"] - Invitation</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/Index.css" asp-append-version="true" />
-    
+
 </head>
 <body>
     <div class="container-custom">
@@ -45,7 +45,7 @@
         </div>
 
         <div class="filter-section mb-3">
-            <h4>Filter Section </h4>
+
             <div class="d-flex flex-wrap">
                 <div class="me-2 mb-2 flex-grow-1">
                     <input type="text" name="FirstName" id="FirstName" placeholder="First Name" class="form-control" />
@@ -68,54 +68,22 @@
             </div>
         </div>
 
-       @*  <div id="recipientTableContainer" class="container-custom">
-            <form id="recipientsForm" method="post" action="@Url.Action("SubmitRecipients", "InvitationSelection")">
-                <table class="table" id="recipientsTable">
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Middle Name</th>
-                            <th>Age</th>
-                            <th>Status</th>
-                            <th>Wife Name</th>
-                            <th>Mother Name</th>
-                            <th>Only Gents</th>
-                            <th>Whole Family</th>
-                            <th class="optional-column" data-column="isWedding">Wedding</th>
-                            <th class="optional-column" data-column="isGaval">Gaval</th>
-                            <th class="optional-column" data-column="isHalad">Halad</th>
-                            <th class="optional-column" data-column="isOvalane">Ovalane</th>
-                            <th class="optional-column" data-column="isReception">Reception</th>
-                            <th class="optional-column" data-column="isMehandi">Mehandi</th>
-                            <th class="optional-column" data-column="isSangit">Sangit</th>
-                            <th>Invited By</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @Html.Partial("_RecipientTable", Model)
-                    </tbody>
-                </table>
-                <input type="submit" value="Submit" class="btn btn-primary" />
-            </form>
-        </div>
-    </div> *@
+
         <div id="recipientTableContainer" class="table-container">
             <form id="recipientsForm" method="post" action="@Url.Action("SubmitRecipients", "InvitationSelection")">
                 <div class="table-wrapper">
                     <table class="table" id="recipientsTable">
                         <thead>
                             <tr>
-                                
-                                <th>First Name</th>                             
+                                <th>First Name</th>
                                 <th>Middle Name</th>
                                 <th>Last Name</th>
                                 <th>Age</th>
                                 <th>Status</th>
                                 <th>Wife Name</th>
                                 <th>Mother Name</th>
-                                <th>Only Gents</th>
-                                <th>Whole Family</th>
+                                <th class="column-gents">Only Gents</th>
+                                <th class="column-family">All Family</th>
                                 <th class="optional-column" data-column="isWedding">Wedding</th>
                                 <th class="optional-column" data-column="isGaval">Gaval</th>
                                 <th class="optional-column" data-column="isHalad">Halad</th>
@@ -124,6 +92,8 @@
                                 <th class="optional-column" data-column="isMehandi">Mehandi</th>
                                 <th class="optional-column" data-column="isSangit">Sangit</th>
                                 <th>Invited By</th>
+                                <th>Card</th>
+                                <th>Video</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -131,9 +101,10 @@
                         </tbody>
                     </table>
                 </div>
-                <input type="submit" value="Submit" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </form>
         </div>
+    </div>
 
 
     @section Scripts {
@@ -213,7 +184,7 @@
                     var middleName = $('#MiddleName').val().toLowerCase();
                     var lastName = $('#LastName').val().toLowerCase();
                     var wifeName = $('#WifeName').val().toLowerCase();
-                        var motherName = $('#MotherName').val().toLowerCase();
+                    var motherName = $('#MotherName').val().toLowerCase();
 
                     $('#recipientsTable tbody tr').each(function () {
                         var row = $(this);
@@ -231,10 +202,10 @@
                         } else if (lastName && !matchLastName) {
                             row.hide();
                         } else if (wifeName && !matchWifeName) {
-                                row.hide();            
+                            row.hide();
                         }
-                            else if (motherName && !matchMotherName) {
-                                row.hide();
+                        else if (motherName && !matchMotherName) {
+                            row.hide();
                         }
                         else {
                             row.show();
@@ -257,6 +228,31 @@
 
                 updateColumns();
             });
+
+             $('#recipientsForm').submit(function (event) {
+                  event.preventDefault(); // Prevent the default form submission
+
+                     $.ajax({
+                                type: $(this).attr('method'),
+                                url: $(this).attr('action'),
+                                data: $(this).serialize(), // Serialize form data
+                                success: function (response) {
+                                    if (response.success) {
+                                        alert(response.message); // Display the success message
+                                    } else {
+                                        alert(response.message); // Display the error message
+                                    }
+                                    // For example, you can reload the recipients table if needed
+                                    //$('#recipientsTable tbody').load('@Url.Action("GetRecipients", "InvitationSelection")');
+                                },
+                                error: function (response) {
+                                    alert("An error occurred while submitting the form.");
+                                }
+                     });
+             });
+
+
+
         </script>
     }
 </body>
